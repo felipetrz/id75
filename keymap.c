@@ -35,54 +35,50 @@
     ),
 */
 
-#define M1_SPC LT(1, KC_SPC)
-#define M2_P5  LT(2, KC_P5)
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &ko_make_basic(MOD_MASK_CA, KC_J, KC_MINS),
+    &ko_make_basic(MOD_MASK_CA, KC_K, KC_EQL),
+    &ko_make_basic(MOD_MASK_CA, KC_SLSH, KC_BSLS),
+    &ko_make_basic(MOD_MASK_CA, KC_M, KC_LPRN),
+    &ko_make_basic(MOD_MASK_CA, KC_COMM, KC_RPRN),
+    &ko_make_basic(MOD_MASK_CA, KC_L, KC_LBRC),
+    &ko_make_basic(MOD_MASK_CA, KC_SCLN, KC_RBRC),
+    NULL
+};
 
-#define LC_QUOT LCTL_T(KC_QUOT)
-#define RC_ENT  RCTL_T(KC_ENT)
-
-// alt-gr
-#define RA_CIRC RALT(KC_6)
-#define RA_BSLS RALT(KC_BSLS)
-
+#define XX_LCTL LCTL_T(KC_QUOT)
+#define XX_RSFT RSFT_T(KC_GRV)
+#define XX_CALT LCTL(KC_LALT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
     [0] = LAYOUT_ortho_5x15(
-        KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL , /**/ KC_P7  , KC_P8  , KC_P9  ,
-        KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC, /**/ KC_P4  , M2_P5  , KC_P6  ,
-        LC_QUOT, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, RC_ENT , /**/ KC_P1  , KC_P2  , KC_P3  ,
-        KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, /**/ KC_P0  , KC_UP  , KC_PENT,
-        KC_LCTL, MO(15) , KC_LGUI, KC_LALT, KC_SPC , KC_SPC , M1_SPC , MO(1)  , KC_RALT, KC_RGUI, MO(15) , KC_RCTL, /**/ KC_LEFT, KC_DOWN, KC_RGHT
+        KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL , /**/ PB_1   , PB_2   , PB_3   ,
+        KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC, /**/ PB_4   , PB_5   , PB_6   ,
+        XX_LCTL, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT , /**/ PB_7   , PB_8   , PB_9   ,
+        KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, XX_RSFT, /**/ _______, KC_UP  , _______,
+        KC_LCTL, MO(15) , KC_LGUI, KC_LALT, KC_SPC , KC_SPC , KC_SPC , XX_CALT, KC_RALT, KC_RGUI, MO(15) , KC_RCTL, /**/ KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
-    // Accents and Symbols
+    // Tibia Mode
     [1] = LAYOUT_ortho_5x15(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, KC_CIRC, KC_GRV , KC_QUOT, _______, /**/ _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, _______, /**/ _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, KC_LPRN, KC_RPRN, RA_BSLS, KC_BSLS, _______, /**/ _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ _______, _______, _______
-    ),
-
-    // Numpad extra
-    [2] = LAYOUT_ortho_5x15(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ KC_PSLS, XXXXXXX, KC_PMNS,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ KC_PAST, _______, KC_PPLS,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ KC_PDOT, XXXXXXX, KC_PEQL,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ KC_PCMM, _______, XXXXXXX,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, /**/ _______, _______, _______
+        _______, KC_F1  , KC_F2  , KC_F3  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ _______, _______, _______,
+        TO(0)  , KC_P7  , KC_UP  , KC_P9  , KC_F5  , KC_F12 , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ _______, _______, _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_F6  , KC_F11 , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(0)  , /**/ _______, _______, _______,
+        _______, KC_P1  , KC_F4  , KC_P3  , KC_F7  , KC_F10 , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ _______, _______, _______,
+        _______, XXXXXXX, _______, _______, KC_F8  , KC_F9  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ _______, _______, _______
     ),
 
     // Fn
     [15] = LAYOUT_ortho_5x15(
-        QK_BOOT, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , XXXXXXX, /**/ KC_F11 , KC_F12 , KC_CAPS,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ XXXXXXX, KC_NUM , KC_SCRL,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ XXXXXXX, XXXXXXX, XXXXXXX,
+        QK_BOOT, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , XXXXXXX, /**/ KC_F11 , KC_F12 , KC_PSCR,
+        TO(1)  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /**/ XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, TO(1)  , /**/ XXXXXXX, XXXXXXX, XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, /**/ XXXXXXX, _______, XXXXXXX,
         _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, /**/ _______, _______, _______
     ),
 };
+
+
 
 
 void keyboard_post_init_user(void)
